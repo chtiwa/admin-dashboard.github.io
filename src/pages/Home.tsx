@@ -1,11 +1,12 @@
 import { BarChart, Percent, PieChart, ShoppingBag } from "lucide-react"
 import UsersChart from "../Components/BarChart"
+import OrdersChart from "../Components/LineChart"
 
 const Home = () => {
   return (
-    <div className="flex flex-col justify-center gap-8 py-4 px-2 w-full">
-      <ul className="flex flex-wrap justify-center gap-4 w-[80%] lg:w-full mx-auto">
-        <li className="relative w-full lg:w-5/12 shadow bg-white dark:bg-gray-800 rounded-lg p-4">
+    <div className="flex flex-col justify-center gap-8 py-4 w-full overflow-x-hidden">
+      <ul className="flex flex-wrap items-center justify-center gap-4 w-full">
+        <li className="relative w-full md:w-4/5 lg:w-5/12 shadow bg-white dark:bg-gray-800 rounded-lg p-4">
           <div className="flex flex-col">
             <p className="text-slate-500 font-bold tracking-wide">Traffic</p>
             <p className="text-xl font-semibold">20,000</p>
@@ -18,7 +19,7 @@ const Home = () => {
             <BarChart />
           </div>
         </li>
-        <li className="relative w-full lg:w-5/12 shadow bg-white dark:bg-gray-800 rounded-lg p-4">
+        <li className="relative w-full md:w-4/5 lg:w-5/12 shadow bg-white dark:bg-gray-800 rounded-lg p-4">
           <div className="flex flex-col">
             <p className="text-slate-500 font-bold tracking-wide">New Users </p>
             <p className="text-xl font-semibold">509</p>
@@ -31,7 +32,7 @@ const Home = () => {
             <PieChart />
           </div>
         </li>
-        <li className="relative w-full lg:w-5/12 shadow bg-white dark:bg-gray-800 rounded-lg p-4">
+        <li className="relative w-full md:w-4/5 lg:w-5/12 shadow bg-white dark:bg-gray-800 rounded-lg p-4">
           <div className="flex flex-col">
             <p className="text-slate-500 font-bold tracking-wide">Sales </p>
             <p className="text-xl font-semibold">124</p>
@@ -44,7 +45,7 @@ const Home = () => {
             <ShoppingBag />
           </div>
         </li>
-        <li className="relative w-full lg:w-5/12 shadow bg-white dark:bg-gray-800 rounded-lg p-4">
+        <li className="relative w-full md:w-4/5 lg:w-5/12 shadow bg-white dark:bg-gray-800 rounded-lg p-4">
           <div className="flex flex-col">
             <p className="text-slate-500 font-bold tracking-wide">
               Performance
@@ -60,9 +61,10 @@ const Home = () => {
           </div>
         </li>
       </ul>
-      {/* <div className="flex items-center justify-center w-full">
-        <UsersChart />
-      </div> */}
+      <div className="flex items-center justify-center flex-col gap-8 w-full">
+        {/* <UsersChart /> */}
+        <OrdersChart />
+      </div>
     </div>
   )
 }

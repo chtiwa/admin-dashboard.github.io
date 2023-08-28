@@ -75,7 +75,7 @@ const Orders = () => {
           ))}
         </tbody>
       </table>
-      <Pagination pages={pages} page={page} setPage={setPage} key={2} />
+      <Pagination pages={pages} page={page} setPage={setPage} key={3} />
     </div>
   )
 }

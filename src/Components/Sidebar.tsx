@@ -6,11 +6,20 @@ import {
   MoonStar,
   Box,
   ShoppingBasket,
-  LogIn
+  LogIn,
+  X
 } from "lucide-react"
 import { useNavigate } from "react-router-dom"
 
-const Sidebar = () => {
+interface SidebarProps {
+  isSidebarOpen: boolean
+  setIsSidebarOpen: (isSidebarOpen: boolean) => void
+}
+
+const Sidebar: React.FC<SidebarProps> = ({
+  isSidebarOpen,
+  setIsSidebarOpen
+}) => {
   const navigate = useNavigate()
   const [theme, setTheme] = useState(localStorage.getItem("theme"))
 
@@ -26,25 +35,61 @@ const Sidebar = () => {
     }
   }, [theme])
 
-  const handleClickTheme = () => {
-    if (theme === "light") {
-      setTheme("dark")
-      localStorage.theme = "dark"
+  const checkSidebar = () => {
+    if (window.innerWidth > 768 && isSidebarOpen) {
+      setIsSidebarOpen(false)
+      return
     } else {
-      setTheme("light")
-      localStorage.theme = "light"
+      return
     }
   }
 
+  useEffect(() => {
+    window.addEventListener("resize", checkSidebar)
+    return () => window.removeEventListener("resize", checkSidebar)
+  }, [])
+
+  const handleClickItem = (type: string) => {
+    if (type === "dashboard") {
+      navigate("/")
+    } else if (type === "users") {
+      navigate("/users")
+    } else if (type === "products") {
+      navigate("/products")
+    } else if (type === "orders") {
+      navigate("/orders")
+    } else if (type === "login") {
+      navigate("/login")
+    } else {
+      if (theme === "light") {
+        setTheme("dark")
+        localStorage.theme = "dark"
+      } else {
+        setTheme("light")
+        localStorage.theme = "light"
+      }
+    }
+    setIsSidebarOpen(false)
+  }
+
   return (
-    <div className="hidden md:flex min-w-[200px] min-h-[100vh] flex-col gap-y-2 p-4 bg-blue-600 text-white dark:bg-gray-800 dark:text-gray-400">
-      <h1 className="flex items-center justify-center py-2 text-lg sm:text-2xl font-bold">
+    <div
+      className={`${
+        isSidebarOpen ? "fixed top-0 right-0 md:min-w-[200px]" : "hidden"
+      } md:flex w-full z-50 md:min-w-[200px] min-h-[100vh] flex-col gap-y-2 p-4 bg-blue-600 text-white dark:bg-gray-800 dark:text-gray-400`}
+    >
+      <h1 className="flex items-center justify-between py-2 text-lg sm:text-2xl font-bold">
         Admin Panel
+        <X
+          onClick={() => setIsSidebarOpen(false)}
+          size={30}
+          className="md:hidden hover:cursor-pointer"
+        />
       </h1>
-      <ul className="flex flex-col gap-y-2 p-4">
+      <ul className="flex flex-col gap-y-2 p-4 ">
         <li
           className="flex items-center justify-start gap-x-4 hover:cursor-pointer py-2"
-          onClick={() => navigate("/")}
+          onClick={() => handleClickItem("dashboard")}
         >
           <div>
             <Laptop2 />
@@ -53,7 +98,7 @@ const Sidebar = () => {
         </li>
         <li
           className="flex items-center justify-start gap-x-4 hover:cursor-pointer py-2"
-          onClick={() => navigate("/users")}
+          onClick={() => handleClickItem("users")}
         >
           <div>
             <Users2 />
@@ -62,7 +107,7 @@ const Sidebar = () => {
         </li>
         <li
           className="flex items-center justify-start gap-x-4 hover:cursor-pointer py-2"
-          onClick={() => navigate("/products")}
+          onClick={() => handleClickItem("products")}
         >
           <div>
             <ShoppingBasket />
@@ -71,7 +116,7 @@ const Sidebar = () => {
         </li>
         <li
           className="flex items-center justify-start gap-x-4 hover:cursor-pointer py-2"
-          onClick={() => navigate("/orders")}
+          onClick={() => handleClickItem("orders")}
         >
           <div>
             <Box />
@@ -80,7 +125,7 @@ const Sidebar = () => {
         </li>
         <li
           className="flex items-center justify-start gap-x-4 hover:cursor-pointer py-2"
-          onClick={() => navigate("/login")}
+          onClick={() => handleClickItem("login")}
         >
           <div>
             <LogIn />
@@ -89,7 +134,7 @@ const Sidebar = () => {
         </li>
         <li
           className="flex items-center justify-start gap-x-4  hover:cursor-pointer py-2"
-          onClick={handleClickTheme}
+          onClick={() => handleClickItem("")}
         >
           <div>{theme === "light" ? <Sun /> : <MoonStar />}</div>
           <span className="text-sm sm:text-base">Theme</span>

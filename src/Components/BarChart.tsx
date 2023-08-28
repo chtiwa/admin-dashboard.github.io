@@ -11,55 +11,70 @@ import {
 
 const data = [
   {
-    name: "Page A",
-    uv: 4000,
-    pv: 2400
+    month: "January",
+    users: 400
   },
   {
-    name: "Page B",
-    uv: 3000,
-    pv: 1398
+    month: "February",
+    users: 500
   },
   {
-    name: "Page C",
-    uv: 2000,
-    pv: 9800
+    month: "March",
+    users: 600
   },
   {
-    name: "Page D",
-    uv: 2780,
-    pv: 3908
+    month: "April",
+    users: 400
   },
   {
-    name: "Page E",
-    uv: 1890,
-    pv: 4800
+    month: "May",
+    users: 200
   },
   {
-    name: "Page F",
-    uv: 2390,
-    pv: 3800
+    month: "June",
+    users: 250
   },
   {
-    name: "Page G",
-    uv: 3490,
-    pv: 4300
+    month: "July",
+    users: 80
+  },
+  {
+    month: "August",
+    users: 400
+  },
+  {
+    month: "September",
+    users: 450
+  },
+  {
+    month: "October",
+    users: 300
+  },
+  {
+    month: "November",
+    users: 250
+  },
+  {
+    month: "December",
+    users: 300
   }
 ]
 
 const UsersChart = () => {
   return (
-    <ResponsiveContainer width="100%" height={300} className={"bg-white"}>
-      <BarChart height={250} data={data}>
-        <CartesianGrid strokeDasharray="3 3" />
-        <XAxis dataKey="name" />
-        <YAxis />
-        <Tooltip />
-        <Legend />
-        <Bar dataKey="pv" fill="#8884d8" />
-        <Bar dataKey="uv" fill="#82ca9d" />
-      </BarChart>
-    </ResponsiveContainer>
+    <div className="flex items-center justify-center flex-col bg-gray-100 text-slate-900 w-full">
+      <h1 className="text-2xl font-semibold ">Active Users</h1>
+      <ResponsiveContainer width="80%" height={300}>
+        <BarChart data={data}>
+          <CartesianGrid strokeDasharray="3 3" />
+          <XAxis dataKey="month" />
+          <YAxis />
+          <Tooltip />
+          <Legend />
+          <Bar dataKey="users" fill="#82ca9d" />
+        </BarChart>
+      </ResponsiveContainer>
+    </div>
   )
 }
 
