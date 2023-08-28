@@ -2,7 +2,6 @@ import {
   Bar,
   BarChart,
   CartesianGrid,
-  Legend,
   ResponsiveContainer,
   Tooltip,
   XAxis,
@@ -60,18 +59,32 @@ const data = [
   }
 ]
 
-const UsersChart = () => {
+interface BarChartProps {
+  theme: string | null
+}
+
+const UsersChart: React.FC<BarChartProps> = ({ theme }) => {
   return (
-    <div className="flex items-center justify-center flex-col bg-gray-100 text-slate-900 w-full">
-      <h1 className="text-2xl font-semibold ">Active Users</h1>
-      <ResponsiveContainer width="80%" height={300}>
+    <div className="flex items-center justify-center flex-col w-full mr-4 ">
+      <h1 className="text-2xl font-semibold dark:text-gray-400">
+        Active Users
+      </h1>
+      <ResponsiveContainer width="100%" height={300}>
         <BarChart data={data}>
           <CartesianGrid strokeDasharray="3 3" />
-          <XAxis dataKey="month" />
-          <YAxis />
+          <XAxis
+            dataKey="month"
+            stroke={`${
+              theme === "light" ? "rgb(55,65,81)" : "rgb(156,163,175)"
+            }`}
+          />
+          <YAxis
+            stroke={`${
+              theme === "light" ? "rgb(55,65,81)" : "rgb(156,163,175)"
+            }`}
+          />
           <Tooltip />
-          <Legend />
-          <Bar dataKey="users" fill="#82ca9d" />
+          <Bar dataKey="users" fill="rgb(37,99,235)" />
         </BarChart>
       </ResponsiveContainer>
     </div>

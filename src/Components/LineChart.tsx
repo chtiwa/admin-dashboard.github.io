@@ -2,7 +2,6 @@ import {
   Line,
   LineChart,
   CartesianGrid,
-  Legend,
   ResponsiveContainer,
   Tooltip,
   XAxis,
@@ -60,21 +59,40 @@ const data = [
   }
 ]
 
-const OrdersChart = () => {
+interface OrdersChartProps {
+  theme: string | null
+}
+
+const OrdersChart: React.FC<OrdersChartProps> = ({ theme }) => {
   return (
-    <div className="flex items-center justify-center flex-col bg-gray-100 text-slate-900 w-full md:w-[400px] lg:w-[600px]">
-      <h1 className="text-2xl font-semibold ">Total Orders</h1>
+    <div className="flex items-center justify-center flex-col w-full mr-4 ">
+      <h1 className="text-2xl font-semibold dark:text-gray-400">
+        Total Orders
+      </h1>
       <ResponsiveContainer width="100%" height={300}>
         <LineChart
           data={data}
           margin={{ top: 5, right: 30, left: 20, bottom: 5 }}
         >
           <CartesianGrid strokeDasharray="3 3" />
-          <XAxis dataKey="month" />
-          <YAxis />
+          <XAxis
+            dataKey="month"
+            stroke={`${
+              theme === "light" ? "rgb(55,65,81)" : "rgb(156,163,175)"
+            }`}
+          />
+          <YAxis
+            stroke={`${
+              theme === "light" ? "rgb(55,65,81)" : "rgb(156,163,175)"
+            }`}
+          />
           <Tooltip />
-          <Legend />
-          <Line type="monotone" dataKey="orders" stroke="#8884d8" />
+          <Line
+            type="monotone"
+            dataKey="orders"
+            stroke="rgb(37 ,99 ,235)"
+            strokeWidth={5}
+          />
         </LineChart>
       </ResponsiveContainer>
     </div>

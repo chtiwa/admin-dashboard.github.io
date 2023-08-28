@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react"
+import { useEffect } from "react"
 import {
   Laptop2,
   Users2,
@@ -14,14 +14,17 @@ import { useNavigate } from "react-router-dom"
 interface SidebarProps {
   isSidebarOpen: boolean
   setIsSidebarOpen: (isSidebarOpen: boolean) => void
+  theme: string | null
+  setTheme: (theme: string) => void
 }
 
 const Sidebar: React.FC<SidebarProps> = ({
   isSidebarOpen,
-  setIsSidebarOpen
+  setIsSidebarOpen,
+  theme,
+  setTheme
 }) => {
   const navigate = useNavigate()
-  const [theme, setTheme] = useState(localStorage.getItem("theme"))
 
   useEffect(() => {
     if (
@@ -75,8 +78,10 @@ const Sidebar: React.FC<SidebarProps> = ({
   return (
     <div
       className={`${
-        isSidebarOpen ? "fixed top-0 right-0 md:min-w-[200px]" : "hidden"
-      } md:flex w-full z-50 md:min-w-[200px] min-h-[100vh] flex-col gap-y-2 p-4 bg-blue-600 text-white dark:bg-gray-800 dark:text-gray-400`}
+        isSidebarOpen
+          ? "fixed top-0 right-0 w-full z-50 h-[100vh] flex-col gap-y-2 p-4 bg-blue-600 text-white dark:bg-gray-800 dark:text-gray-400"
+          : "hidden"
+      }`}
     >
       <h1 className="flex items-center justify-between py-2 text-lg sm:text-2xl font-bold">
         Admin Panel
