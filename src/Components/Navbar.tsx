@@ -64,7 +64,6 @@ const Navbar: React.FC<NavbarProps> = ({
   }
 
   return (
-    // <div className="w-full md:w-[calc(100vw-200px)] flex items-center justify-between p-2 md:p-4 bg-blue-600 text-white dark:bg-gray-800 dark:text-gray-400">
     <div className="w-full flex items-center justify-between p-2 md:p-4 bg-blue-600 text-white dark:bg-gray-800 dark:text-gray-400">
       <div className="flex items-center justify-center gap-4">
         <div
@@ -76,9 +75,9 @@ const Navbar: React.FC<NavbarProps> = ({
         <p className="text-lg sm:text-xl font-bold">{path} </p>
       </div>
       <div className="flex items-center justify-center gap-4">
-        <ul className="hidden md:flex items-center justify-center gap-4 py-2">
+        <ul className="hidden md:flex items-center justify-center gap-8 py-2">
           <li
-            className="flex items-center justify-center gap-x-1 hover:cursor-pointer py-2"
+            className="flex items-end justify-end gap-x-1 hover:cursor-pointer py-2"
             onClick={() => handleClickItem("dashboard")}
           >
             <div>
