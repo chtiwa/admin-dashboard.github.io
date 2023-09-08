@@ -79,7 +79,7 @@ const Sidebar: React.FC<SidebarProps> = ({
     <div
       className={`${
         isSidebarOpen
-          ? "fixed top-0 right-0 w-full z-50 h-[100vh] flex-col gap-y-2 p-4 bg-blue-600 text-white dark:bg-gray-800 dark:text-gray-400"
+          ? "fixed top-0 right-0 w-full z-50 h-[100vh] flex-col gap-y-2 p-4 bg-blue-700 text-white dark:bg-gray-800 dark:text-gray-400"
           : "hidden"
       }`}
     >
